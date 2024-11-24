@@ -1,0 +1,55 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Application
+
+paths:
+  /status:
+    get:
+      description: get the service status
+      responses:
+        '200':
+          description: Ok Status Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+        '5XX':
+          description: Error Status Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+
+components:
+  schemas:
+    Dependency:
+      type: object
+      required:
+        - name
+        - status
+        - reason
+      properties:
+        name:
+          type: string
+          example: Database
+        status:
+          type: string
+          example: KO
+        reason:
+          type: string
+          example: Restarting
+
+    Status:
+      type: object
+      required:
+        - status
+        - dependencies
+      properties:
+        status:
+          type: string
+          example: OK
+        dependencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dependency'

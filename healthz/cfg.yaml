@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/oapi-codegen/oapi-codegen/main/configuration-schema.json
+package: healthz
+output: server.gen.go
+generate:
+  models: true
+  strict-server: true
